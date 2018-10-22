@@ -1,0 +1,8 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "Simple bootstrap hello-world example",
+  "main": "index.js",
+  "author": "j2FunOnly <j2funonly@ya.ru>",
+  "license": "MIT"
+}
