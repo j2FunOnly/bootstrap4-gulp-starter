@@ -4,5 +4,11 @@
   "description": "Simple bootstrap hello-world example",
   "main": "index.js",
   "author": "j2FunOnly <j2funonly@ya.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4",
+    "tether": "^1.4.5"
+  }
 }
