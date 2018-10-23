@@ -6,6 +6,7 @@ gulp.task('compile-sass', function () {
   return gulp
     .src([
       'node_modules/bootstrap/scss/bootstrap.scss',
+      'node_modules/font-awesome/scss/font-awesome.scss',
       'src/scss/*.scss'
     ])
     .pipe(sass())
@@ -24,6 +25,13 @@ gulp.task('move-js', function () {
     .pipe(browserSync.stream());
 });
 
+gulp.task('move-fonts', function () {
+  return gulp
+    .src('node_modules/font-awesome/fonts/*')
+    .pipe(gulp.dest('src/fonts'))
+    .pipe(browserSync.stream());
+});
+
 gulp.task('launch-server', ['compile-sass'], function () {
   browserSync.init({
     server: './src'
@@ -33,4 +41,4 @@ gulp.task('launch-server', ['compile-sass'], function () {
   gulp.watch('src/*.html').on('change', browserSync.reload);
 });
 
-gulp.task('default', ['move-js', 'launch-server']);
+gulp.task('default', ['move-js', 'move-fonts', 'launch-server']);
