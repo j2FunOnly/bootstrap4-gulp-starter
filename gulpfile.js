@@ -4,17 +4,13 @@ var sass = require('gulp-sass');
 
 gulp.task('compile-sass', function () {
   return gulp
-    .src([
-      'node_modules/bootstrap/scss/bootstrap.scss',
-      'node_modules/font-awesome/scss/font-awesome.scss',
-      'src/scss/*.scss'
-    ])
+    .src('src/scss/*.scss')
     .pipe(sass())
     .pipe(gulp.dest('src/css'))
     .pipe(browserSync.stream());
 });
 
-gulp.task('move-js', function () {
+gulp.task('copy-js', function () {
   return gulp
     .src([
       'node_modules/bootstrap/dist/js/bootstrap.min.js',
@@ -25,12 +21,24 @@ gulp.task('move-js', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('move-fonts', function () {
+gulp.task('copy-fonts', function () {
   return gulp
     .src('node_modules/font-awesome/fonts/*')
     .pipe(gulp.dest('src/fonts'))
     .pipe(browserSync.stream());
 });
+
+gulp.task('copy-css', function () {
+  return gulp
+    .src([
+      'node_modules/bootstrap/css/bootstrap.min.css',
+      'node_modules/font-awesome/css/font-awesome.min.css'
+    ])
+    .pipe(gulp.dest('src/css'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('copy-assets', ['copy-js', 'copy-fonts', 'copy-css'])
 
 gulp.task('launch-server', ['compile-sass'], function () {
   browserSync.init({
@@ -41,4 +49,4 @@ gulp.task('launch-server', ['compile-sass'], function () {
   gulp.watch('src/*.html').on('change', browserSync.reload);
 });
 
-gulp.task('default', ['move-js', 'move-fonts', 'launch-server']);
+gulp.task('default', ['copy-assets', 'launch-server']);
